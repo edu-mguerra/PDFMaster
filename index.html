@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJA PDF's</title>
+    <link rel="icon" href="img's/logo aja sem fundo.png" type="image/png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .head {
+            background-color: #fdf202;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 30px;
+        }
+
+        .head .head-logo {
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .head img {
+            width: 200px;
+            padding: 10px 10px 20px 10px;
+        }
+
+        form {
+            gap: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: black;
+        }
+
+        form label {
+            font-weight: 700;
+            font-size: 30px;
+            font-style: italic;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .locadora {
+            color: #fdf202;
+        }
+
+        .roça {
+            color: #36840a;
+        }
+
+        .ra3 {
+            color: #00b3ff;
+        }
+
+        .file-s {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .file-types {
+            position: relative;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        .selected {
+            background: #121212;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: 4px solid #fdf202;
+        }
+
+        .selected:hover {
+            background-color: #1f1f1f;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background: #fff;
+            color: black;
+            width: 100%;
+            border-radius: 5px;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .dropdown ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .dropdown li:hover {
+            background-color: #f1f1f1;
+        }
+
+        .name-arq {
+            background-color: #000000;
+            color: #fdf202;
+            width: 200px;
+            height: 40px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 7px;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #fdf202;
+        }
+
+        .convert,
+        .convert2,
+        .convert3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #000000;
+            color: #fdf202;
+            width: 400px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .convert:hover {
+            background-color: #1a1a1a;
+        }
+
+        .inpt {
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-question {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #download-images-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #download-images-button:hover {
+            background-color: #45a049;
+        }
+
+        #download-images-button:active {
+            background-color: #3e8e41;
+            transform: scale(0.98);
+        }
+
+
+        @media (max-width: 1000px) {
+            .inpt {
+                flex-direction: column;
+                font-size: 20px;
+            }
+
+            .head img {
+                width: 180px;
+            }
+
+            form label {
+                font-size: 28px;
+            }
+
+            .convert,
+            .convert2,
+            .convert3 {
+                width: 100%;
+                max-width: 450px;
+                font-size: 15px;
+                flex-wrap: wrap;
+            }
+
+            .convert input,
+            .convert2 input,
+            .convert3 input {
+                font-size: 10px;
+                display: flex;
+            }
+
+            
+        }
+
+        @media (max-width: 768px) {
+            .head img {
+                width: 150px;
+            }
+
+            form {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            form label {
+                font-size: 24px;
+            }
+
+            .file-types {
+                width: 100%;
+            }
+
+            .convert,
+            .convert2,
+            .convert3 {
+                width: 1200%;
+                max-width: 300px;
+            }
+
+            #download-images-button {
+                width: 100%;
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .head img {
+                width: 120px;
+            }
+
+            form label {
+                font-size: 18px;
+            }
+
+            .convert,
+            .convert2,
+            .convert3,
+            .name-arq {
+                width: 100%;
+            }
+
+            #download-images-button {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 100px) {
+            .head img {
+                width: 80px;
+            }
+
+            form label {
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            .file-types {
+                width: 90%;
+            }
+
+            .convert,
+            .convert2,
+            .convert3,
+            .name-arq {
+                width: 90%;
+                max-width: 100px;
+                padding: 5px;
+            }
+
+            #download-images-button {
+                font-size: 10px;
+                padding: 5px;
+            }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script src="dist/bundle.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+
+    <div class="head">
+        <div class="head-logo">
+            <img src="img's/aja name.png" alt="AJA Logo">
+        </div>
+        <div>
+            <h1>Juntar PDFs</h1>
+        </div>
+    </div>
+
+    <form style="color: #fff;">
+        <input type="radio" name="segmento" value="Aja Locadora" /> Aja Locadora
+        <input type="radio" name="segmento" value="Aja Agro" /> Aja Agro
+        <input type="radio" name="segmento" value="Ra3" /> Ra3
+        <input type="radio" name="segmento" value="." /> Sem marca
+    </form>
+
+    <br>
+
+    <div class="file-s">
+        <div class="file-types">
+            <div class="selected" id="drop">Tipos de arquivos aceitos: PDF</div>
+        </div>
+
+        <input type="text" name="name-arq" class="name-arq" id="name-arq" placeholder="Digite o nome do arquivo final"
+            required />
+
+        <div class="inpt">
+            <div class="convert">
+                <input type="file" id="upload" accept=".pdf" multiple />
+                <button id="convert">Juntar PDFs</button>
+            </div>
+
+            <div class="convert2">
+                <input type="file" id="upload2" multiple />
+                <button id="convert2">Imagem para PDF</button>
+            </div>
+
+            <div class="convert3">
+                <input type="file" id="upload3" accept=".pdf" />
+                <button id="convert3" class="convertToImage">Converter PDF para Imagem</button>
+            </div>
+        </div>
+
+        <div class="download-question">
+        </div>
+        <div id="canvas-container"></div>
+    </div>
+
+
+    <script>
+        document.getElementById('convert').addEventListener('click', async function (event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('upload');
+            const files = fileInput.files;
+
+
+            const fileNameInput = document.getElementById('name-arq');
+            const fileName = fileNameInput.value.trim();
+            if (!fileName) {
+                alert('Por favor, digite o nome do arquivo final.');
+                return;
+            }
+
+
+            const selectedSegment = document.querySelector('input[name="segmento"]:checked');
+            if (!selectedSegment) {
+                alert('Por favor, selecione um segmento.');
+                return;
+            }
+
+            const mergedPdf = await PDFLib.PDFDocument.create();
+
+
+            for (const file of files) {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+                const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                copiedPages.forEach((page) => mergedPdf.addPage(page));
+            }
+
+            const segmentStyles = {
+                'Aja Locadora': { color: PDFLib.rgb(0.5, 0.5, 0), logo: "img's/aja name.png" },
+                'Aja Agro': { color: PDFLib.rgb(0.1, 0.5, 0.1), logo: 'caminho/para/logo-agro.png' },
+                'Ra3': { color: PDFLib.rgb(0.1, 0.1, 0.5), logo: 'caminho/para/logo-ra3.png' },
+                '.': { color: PDFLib.rgb(1, 1, 1) }
+            };
+
+            const segmentValue = selectedSegment.value;
+            console.log('Valor do segmento selecionado:', segmentValue);
+            const style = segmentStyles[segmentValue];
+
+
+
+            const segmentTitle = segmentValue.charAt(0).toUpperCase() + segmentValue.slice(1);
+            const pageCount = mergedPdf.getPageCount();
+
+            for (let i = 0; i < pageCount; i++) {
+                const page = mergedPdf.getPage(i);
+
+                const font = await mergedPdf.embedFont(PDFLib.StandardFonts.HelveticaBold);
+
+                page.drawText(segmentTitle, {
+                    x: 50,
+                    y: page.getHeight() - 40,
+                    size: 12,
+                    font: font,
+                    color: style.color,
+                });
+            }
+
+            const pdfBytes = await mergedPdf.save();
+            download(pdfBytes, `${fileName}.pdf`, 'application/pdf');
+        });
+
+        document.getElementById('convert2').addEventListener('click', async function (event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('upload2');
+            const files = fileInput.files;
+
+
+            const fileNameInput = document.getElementById('name-arq');
+            const fileName = fileNameInput.value.trim();
+            if (!fileName) {
+                alert('Por favor, digite o nome do arquivo final.');
+                return;
+            }
+
+
+            const selectedSegment = document.querySelector('input[name="segmento"]:checked');
+            if (!selectedSegment) {
+                alert('Por favor, selecione um segmento.');
+                return;
+            }
+
+            const pdfDoc = await PDFLib.PDFDocument.create();
+
+            const pageWidth = 595.28;
+            const pageHeight = 841.89;
+
+            const fixedWidth = 400;
+            const fixedHeight = 650;
+
+            const segmentStyles = {
+                'Aja Locadora': { color: PDFLib.rgb(0.5, 0.5, 0), logo: "img's/aja name.png" },
+                'Aja Agro': { color: PDFLib.rgb(0.1, 0.5, 0.1), logo: 'caminho/para/logo-agro.png' },
+                'Ra3': { color: PDFLib.rgb(0.1, 0.1, 0.5), logo: 'caminho/para/logo-ra3.png' },
+                '.': { color: PDFLib.rgb(1, 1, 1) } // Sem marca
+            };
+
+            const segmentValue = selectedSegment.value;
+            console.log('Valor do segmento selecionado:', segmentValue);
+            const style = segmentStyles[segmentValue];
+
+
+
+            for (const file of files) {
+                const arrayBuffer = await file.arrayBuffer();
+
+                const fileType = file.type;
+                if (fileType !== 'image/png' && fileType !== 'image/jpeg' && fileType !== 'image/gif') {
+                    alert('O arquivo não é uma imagem PNG, JPG ou GIF!');
+                    return;
+                }
+
+                let image;
+                if (fileType === 'image/png') {
+                    image = await pdfDoc.embedPng(arrayBuffer);
+                } else if (fileType === 'image/jpeg') {
+                    image = await pdfDoc.embedJpg(arrayBuffer);
+                } else if (fileType === 'image/gif') {
+                    image = await pdfDoc.embedGif(arrayBuffer);
+                }
+
+                const page = pdfDoc.addPage([pageWidth, pageHeight]);
+
+                const x = (pageWidth - fixedWidth) / 2;
+                const y = (pageHeight - fixedHeight) / 2;
+
+                page.drawImage(image, {
+                    x: x,
+                    y: y,
+                    width: fixedWidth,
+                    height: fixedHeight,
+                });
+
+                const segmentTitle = segmentValue.charAt(0).toUpperCase() + segmentValue.slice(1);
+
+                const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+
+                page.drawText(segmentTitle, {
+                    x: 50,
+                    y: page.getHeight() - 40,
+                    size: 12,
+                    font: font,
+                    color: style.color,
+                });
+            }
+
+            const pdfBytes = await pdfDoc.save();
+            download(pdfBytes, `${fileName}.pdf`, 'application/pdf');
+        });
+
+        function download(data, filename, type) {
+            const blob = new Blob([data], { type: type });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        document.getElementById('convert3').addEventListener('click', async function (event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('upload3');
+            const files = fileInput.files;
+
+            if (!files.length) {
+                alert('Por favor, selecione um arquivo PDF.');
+                return;
+            }
+
+            const file = files[0];
+            const arrayBuffer = await file.arrayBuffer();
+
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+            const pageCount = pdf.numPages;
+            const zip = new JSZip();
+            const imgPromises = [];
+
+            const canvasContainer = document.getElementById('canvas-container');
+            canvasContainer.innerHTML = '';
+
+            for (let i = 0; i < pageCount; i++) {
+                const page = await pdf.getPage(i + 1);
+
+                const scale = 1.5;
+                const viewport = page.getViewport({ scale: scale });
+
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+
+                await page.render(renderContext).promise;
+
+                const pngDataUrl = canvas.toDataURL('image/png');
+                const imgElement = document.createElement('img');
+                imgElement.src = pngDataUrl;
+                canvasContainer.appendChild(imgElement);
+
+                const imgBlob = await (await fetch(pngDataUrl)).blob();
+                zip.file(`page-${i + 1}.png`, imgBlob);
+
+                imgPromises.push(Promise.resolve());
+            }
+
+            await Promise.all(imgPromises);
+
+            zip.generateAsync({ type: 'blob' }).then(function (blob) {
+                download(blob, 'pdf-images.zip', 'application/zip');
+            });
+        });
+
+        function download(data, filename, type) {
+            const blob = new Blob([data], { type: type });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
